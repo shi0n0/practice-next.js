@@ -24,7 +24,19 @@ export default function RootLayout({
   return (
     <html lang="ja">
       {/* 3. ページやレイアウトの内容を表示 */}
-      <body className={NotoSansJP.className}>{children}</body>
+      <header>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>{children}</main>
+      <footer>
+        <p>&copy; {new Date().getFullYear()} Sample Site. All rights reserved.</p>
+      </footer>
     </html>
   )
 }
