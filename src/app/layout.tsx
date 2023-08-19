@@ -1,5 +1,6 @@
 import { Noto_Sans_JP } from 'next/font/google'
 import './globals.css'
+import Navbar from './navbar';
 
 // フォントの読み込み
 const NotoSansJP = Noto_Sans_JP({
@@ -23,7 +24,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={NotoSansJP.className}>
+      <body className={`${NotoSansJP.className} bg-gray-200`}>
+      <Navbar />
           <div>this div is shared layout.tsx</div>
           <main>
             {children}
