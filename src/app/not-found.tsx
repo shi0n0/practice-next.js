@@ -1,5 +1,10 @@
+import Link from 'next/link'
+
 export default function NotFound() {
     return(
-        <h1>このページは存在しません</h1>
+        <>
+            <div className='text-xl'>このページは存在しません</div>
+            <Link href="/">ホームへ戻る</Link>
+        </>
     )
 }
