@@ -1,9 +1,14 @@
+import Submit from './submit';
+import Task from './task';
+
 export default function Page() {
   return (
-    <main>
       <div>
-      <p className="font-bold underline">Hello, world!</p>
+        <h1 className='text-xl p-2'>Todolist</h1>
+        <Task />
+        <Submit />
+        <p>this is top page!</p>
       </div>
-    </main>
   )
 }
+
