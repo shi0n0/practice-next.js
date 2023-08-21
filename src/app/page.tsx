@@ -1,13 +1,14 @@
-import Submit from './submit';
-import Task from './task';
+import Submit from './components/submit';
+import Task from './components/task';
 
 export default function Page() {
   return (
       <div>
-        <h1 className='text-xl p-2'>Todolist</h1>
-        <Task />
-        <Submit />
-        <p>this is top page!</p>
+        <h1 className='text-xl font-bold text-gray-700 p-2'>Todo List</h1>
+        <div className='bg-white rounded-lg p-2'>
+          <Submit />
+          <Task />
+        </div>
       </div>
   )
 }
