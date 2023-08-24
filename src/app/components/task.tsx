@@ -1,7 +1,17 @@
-export default function Task() {
+import React from "react"
+
+const Task = () => {
     return(
-        <div className="rounded-lg bg-white p-3 whitespace-normal overflow-wrap break-words">
-            テストをテストしてテスト内で問題が出たのでテストして再テストをすると治った
-        </div>
+        <ul>
+            <li>
+                <span>Next.jsの勉強</span>
+                <div>
+                    <button>編集</button>
+                    <button>削除</button>
+                </div>
+            </li>
+        </ul>
     )
 }
+
+export default Task;
