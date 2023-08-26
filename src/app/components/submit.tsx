@@ -14,7 +14,7 @@ export default function Submit() {
 
     return(
         <form action="" className="flex flex-col">
-            <input type="text" onChange={(e) => setTask(e.target.value)} className="p-2 border rounded my-2 focus:outline-none" />
+            <input type="text" onChange={(e) => setTask(e.target.value)} value={task} className="p-2 border rounded my-2 focus:outline-none" />
             <button onClick={addTodos} className="text-white bg-blue-500 p-2 transform my-2 hover:bg-blue-400 hover:scale-95 duration-100">タスク追加</button>
         </form>
     );
