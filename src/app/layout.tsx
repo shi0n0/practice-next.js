@@ -1,6 +1,5 @@
 import { Noto_Sans_JP } from 'next/font/google'
 import './globals.css'
-import Navbar from './components/navbar';
 
 // フォントの読み込み
 const NotoSansJP = Noto_Sans_JP({
@@ -25,7 +24,6 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${NotoSansJP.className} bg-gray-200`}>
-      <Navbar />
         <div className='text-center mt-10'>
           <h1 className='text-3xl font-bold text-gray-700'>Next.js-13.4 Todo App</h1>
         </div>
