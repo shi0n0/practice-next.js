@@ -1,13 +1,16 @@
 import Image from 'next/image';
 
 
-export default function ImageComponent() {
+const ImageComponent = () => {
   return (
-    <Image
-      src="/test.jpg"
-      width={500}
-      height={500}
-      alt="Picture of the author"
+    <div className='relative h-96'>
+        <Image
+        src="/test2.jpg"
+        alt="Picture of the author"
+        className='object-contain'
+        fill
     />
+    </div >
   );
 }
+export default ImageComponent
