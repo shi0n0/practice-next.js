@@ -27,18 +27,28 @@ const [editedTaskTitle, setEditTaskTitle] =useState(todo.text)
     } 
 
     return (
-        <li key={ todo.id } className="flex justify-between p-3 w-full h-full">
-        { isEditing ? (<input type="text" className="p-1 border border-gray-400 rounded focus:outline-none" value={ editedTaskTitle } onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditTaskTitle(e.target.value)} />) : (
-        <div className="w-full h-96">
-            <div className="flex justify-between">
-                <span>{todo.text}</span>
-                <div className="flex gap-2">
-                { isEditing ? (<button className="text-gray-700 py-1 px-2 rounded-lg hover:bg-gray-200 duration-300" onClick={handleSave}>登録</button>) : (<button className="text-gray-700 py-1 px-2 rounded-lg hover:bg-gray-200 duration-300" onClick={handleEdit}>編集</button>)}
+        <li key={ todo.id } className="w-full h-full mb-2 bg-blue-100 rounded-t-lg border">
+        { isEditing ? (
+        <div className="w-full flex justify-between bg-blue-50 p-3 rounded-t-lg">
+            <input type="text" className="border border-gray-400 rounded focus:outline-none" value={ editedTaskTitle } onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditTaskTitle(e.target.value)} />
+            <div className="gap-2">
+                <button className="text-gray-700 py-1 px-2 rounded-lg hover:bg-gray-200 duration-300" onClick={handleSave}>登録</button>
                 <button className="text-red-400 py-1 px-2 rounded-lg hover:bg-gray-200 duration-300" onClick={handleDelete}>削除</button>
-                </div>
             </div>
+        </div>
+        ): 
+        (
+        <div className="w-full flex justify-between bg-blue-50 p-3 rounded-t-lg">
+            <span>{todo.text}</span>
+            <div className="gap-2">
+                <button className="text-gray-700 py-1 px-2 rounded-lg hover:bg-gray-200 duration-300" onClick={handleEdit}>編集</button>
+                <button className="text-red-400 py-1 px-2 rounded-lg hover:bg-gray-200 duration-300" onClick={handleDelete}>削除</button>
+            </div>
+        </div>
+        ) }
+        <div className="w-full">
             <ImageComponent />
-        </div>) }
+        </div>
     </li>
     )
 } 
