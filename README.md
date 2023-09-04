@@ -8,7 +8,7 @@ Next.jsの強みとして画像の処理があるらしいので、Todoアプリ
 
 ### Stack  
 使用言語はNext.js-13.4, CSSはTailwind  
-使用するデータベースはJSON-Serverです。 
+使用するデータベースはVercelです。 
 
 なお、Todoアプリ内の画像の表示についてはnext.js-13のnext/imageを使用しています。
 
@@ -17,3 +17,6 @@ Next.jsの強みとして画像の処理があるらしいので、Todoアプリ
 
 ### メモ  
 tailwindCSSを使用する上で作成されるglobal.cssにてVSCODE上だと"unknown at rule"というエラーが発生しますが、VSCODEの仕様のようでそのまま無視で動くので問題ないようです。
+
+Next.jsの仕様的に画像関連までローカルで完結させようとすると難しいようなので、元の予定通りvercelを使おうと思います。  
+ホスティングおよびデータベースとストレージを全てvercelで完結させる予定です。
