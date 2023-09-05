@@ -27,7 +27,7 @@ export default function RootLayout({
         <div className='text-center mt-10'>
           <h1 className='text-3xl font-bold text-gray-700'>Next.js-13.4 Todo App</h1>
         </div>
-          <main className='flex flex-col items-center justify-center min-h-screen -mt-32'>
+          <main className='flex items-top mt-8 justify-center min-h-screen'>
             <div className='w-full max-w-xl mt-5'>
               {children}
             </div>
