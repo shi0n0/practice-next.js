@@ -1,19 +1,17 @@
 import React from "react"
-import { Task } from "@/type";
-import Todo from "./todo";
+import prisma from "../../../prisma/prisma";
+import Todo from "./todo"
 
-interface TaskProps {
-    todos: Task[];
-}
+const TodoList = async() => {
+    const tasks = await prisma.tasks.findMany();
 
-const Task = ({ todos }: TaskProps) => {
     return(
-        <ul className="border-l-4 rounded-l p-2 border-blue-400 bg-gradient-to-r from-blue-200 shadow">
-            {todos.map((todo) => (
-                <Todo key={todo.id} todo={todo} /> 
+        <ul>
+            {tasks.map((task) => (
+                    <Todo key={task.id} task={task} /> 
             ))}
         </ul>
     )
 }
 
-export default Task;
+export default TodoList;
