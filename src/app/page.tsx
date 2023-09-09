@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache';
 import prisma from '../../prisma/prisma';
 
 const Page = async() => {
@@ -7,6 +8,7 @@ const Page = async() => {
     "use server"
      const text = data.get('text') as string;
      await prisma.tasks.create({ data: { text } });
+     revalidatePath('/');
   };
 
   return (
