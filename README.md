@@ -11,7 +11,8 @@ Next.jsの強みとして画像の処理があるらしいので、Todoアプリ
 使用するデータベースはVercelで操作はPrismaです。 
 
 ### 進行  
-9/10現在、CRUDのうちCRの部分のみ完成しました。  
+9/10現在、CRUDのうちCreate(タスク追加)Read(タスク読み込み)Delete(タスク削除)の部分のみ完成しました。  
+のこりは、Update(編集機能)を開発することとします。  
 
 ### メモ  
 tailwindCSSを使用する上で作成されるglobal.cssにてVSCODE上だと"unknown at rule"というエラーが発生しますが、VSCODEの仕様のようでそのまま無視で動くので問題ないようです。
