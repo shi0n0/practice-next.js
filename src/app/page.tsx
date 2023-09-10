@@ -11,6 +11,18 @@ const Page = async() => {
      revalidatePath('/');
   };
 
+  const deleteTodo = async (data: FormData) => {
+    "use server"
+    const id = data.get("id") as string;
+    await prisma.tasks.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    revalidatePath('/');
+  }
+  
+
   return (
       <div>
         <h1 className='text-xl font-bold text-gray-700 p-2'>Todo List</h1>
@@ -26,6 +38,16 @@ const Page = async() => {
                     {task.createdAt.toLocaleDateString()}
                   </div>
                 </div>
+                <form>
+                  <input type="hidden" name="id" value={task.id} />
+                  <button
+                  type='submit'
+                  className="text-red-600 hover:text-red-800 focus:outline-none"
+                  formAction={deleteTodo} // ボタンがクリックされたときの削除処理を実行する関数を設定
+                  >
+                  削除
+                  </button>
+                </form>
               </li>
             ))}
           </ul>
