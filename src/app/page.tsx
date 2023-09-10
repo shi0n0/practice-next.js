@@ -17,7 +17,16 @@ const Page = async() => {
         <div className='bg-white rounded-lg p-4'>
           <ul>
             {tasks.map((task) => (
-              <li className='p-1' key={task.id}>{task.text}{task.createdAt.toLocaleDateString()}</li>
+              <li className='p-1 flex justify-between items-center' key={task.id}>
+                <div className="flex items-center">
+                  <div className="mr-2">
+                    {task.text}
+                  </div>
+                  <div className="text-gray-500 text-sm">
+                    {task.createdAt.toLocaleDateString()}
+                  </div>
+                </div>
+              </li>
             ))}
           </ul>
           <form action={addTodo}>
