@@ -1,48 +1,33 @@
-import { Task } from "./type"
+'use server';
+import { revalidatePath } from 'next/cache';
+import prisma from '../prisma/prisma';
 
-export const getAllTodos = async (): Promise<Task[]> => {
-    const res = await fetch(`http://localhost:3002/tasks`, {
-        cache: "no-store",
-    })
-    const Todos = res.json()
+export const addTodo = async(data: FormData) => {
+    "use server"
+     const text = data.get('text') as string;
+     await prisma.tasks.create({ data: { text } });
+     revalidatePath('/');
+  };
 
-    return Todos;
-};
+export const deleteTodo = async (data: FormData) => {
+    "use server"
+    const id = data.get("id") as string;
+    await prisma.tasks.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    revalidatePath('/');
+  }
 
-export const addTodo = async (todo: Task): Promise<Task[]> => {
-    const res = await fetch(`http://localhost:3002/tasks`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
+export async function doneTodo(id:Number, is_completed: boolean) {
+    await prisma.tasks.update({
+        where: {
+            id: Number(id),
         },
-        body: JSON.stringify(todo)
-    })
-    const NewTodo = res.json()
-
-    return NewTodo;
-};
-
-export const editTodo = async (id:string, newText:string): Promise<Task[]> => {
-    const res = await fetch(`http://localhost:3002/tasks/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
+        data: {
+            isCompleted: !is_completed,
         },
-        body: JSON.stringify({ text:newText })
-    })
-    const UpdateTodo = res.json()
-
-    return UpdateTodo ;
-};
-
-export const deleteTodo = async (id:string): Promise<Task[]> => {
-    const res = await fetch(`http://localhost:3002/tasks/${id}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        },
-    })
-    const DeleteTodo = res.json()
-
-    return DeleteTodo ;
-};
+    });
+    revalidatePath('/')
+}
