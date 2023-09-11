@@ -4,7 +4,7 @@ export default function NotFound() {
     return(
         <>
             <div className='text-xl'>このページは存在しません</div>
-            <Link href="/">ホームへ戻る</Link>
+            <Link className='underline hover:text-blue-500' href="/">ホームへ戻る</Link>
         </>
     )
 }
