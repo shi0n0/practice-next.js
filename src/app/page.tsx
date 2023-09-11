@@ -8,12 +8,6 @@ import DoneTodo from './api/todos/DoneTodo';
 const Page = async() => {
   const tasks = await prisma.tasks.findMany();
 
-  const doneTodo = async (data: FormData) => {
-    'use server';
-    const id = data.get('id') as string;
-    console.log(id);
-  };
-
   return (
       <div>
         <h1 className='text-xl font-bold text-gray-700 p-2'>Todo List</h1>
@@ -36,7 +30,7 @@ const Page = async() => {
                   <DoneTodo id={task.id} isCompleted={task.isCompleted}/>
                   <button
                   type='submit'
-                  className="text-red-600 hover:text-red-800 focus:outline-none"
+                  className="text-red-600 hover:text-red-800 focus:outline-none ml-2"
                   formAction={deleteTodo} // ボタンがクリックされたときの削除処理を実行する関数を設定
                   >
                   削除
