@@ -1,27 +1,18 @@
-import { revalidatePath } from 'next/cache';
 import prisma from '../../prisma/prisma';
+import { deleteTodo } from '@/api'; '../api'
+import AddTodo from './api/todos/AddTodo';
+import { startTransition } from 'react';
+import DoneTodo from './api/todos/DoneTodo';
+
 
 const Page = async() => {
   const tasks = await prisma.tasks.findMany();
 
-  const addTodo = async(data: FormData) => {
-    "use server"
-     const text = data.get('text') as string;
-     await prisma.tasks.create({ data: { text } });
-     revalidatePath('/');
+  const doneTodo = async (data: FormData) => {
+    'use server';
+    const id = data.get('id') as string;
+    console.log(id);
   };
-
-  const deleteTodo = async (data: FormData) => {
-    "use server"
-    const id = data.get("id") as string;
-    await prisma.tasks.delete({
-      where: {
-        id: Number(id),
-      },
-    });
-    revalidatePath('/');
-  }
-  
 
   return (
       <div>
@@ -29,7 +20,9 @@ const Page = async() => {
         <div className='bg-white rounded-lg p-4'>
           <ul>
             {tasks.map((task) => (
-              <li className='p-1 flex justify-between items-center' key={task.id}>
+              <li className={`p-1 flex justify-between items-center ${
+                task.isCompleted ? 'line-through' : ''
+              }`} key={task.id}>
                 <div className="flex items-center">
                   <div className="mr-2">
                     {task.text}
@@ -38,8 +31,9 @@ const Page = async() => {
                     {task.createdAt.toLocaleDateString()}
                   </div>
                 </div>
-                <form>
+                <form className='flex'>
                   <input type="hidden" name="id" value={task.id} />
+                  <DoneTodo id={task.id} isCompleted={task.isCompleted}/>
                   <button
                   type='submit'
                   className="text-red-600 hover:text-red-800 focus:outline-none"
@@ -51,22 +45,7 @@ const Page = async() => {
               </li>
             ))}
           </ul>
-          <form action={addTodo}>
-            <div className='mt-3'>
-              <input
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
-              type="text"
-              name='text'
-              placeholder="新しいタスクを入力"
-              />
-              <button
-                type='submit'
-                className="w-full mt-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition duration-100 ease-in-out focus:outline-none"
-              >
-                タスクを追加
-              </button>
-            </div>
-          </form>
+          <AddTodo />
         </div>
       </div>
     )
